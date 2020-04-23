@@ -5,10 +5,10 @@ class BooksController < ApplicationController
 	end
 
 	def create
-		@book=Book.new(book_params)
-		@book.user_id = current_user.id
-  		if @book.save
-  			redirect_to book_path(@book.id),notice: "You have creatad book successfully."
+		@booked=Book.new(book_params)
+		@booked.user_id = current_user.id
+  		if @booked.save
+  			redirect_to book_path(@booked),notice: "You have creatad book successfully."
   		else
   			@books=Book.all#index用
         	render action: :index
@@ -17,11 +17,12 @@ class BooksController < ApplicationController
 
 	def index
 		@books=Book.all#全データ表示用
-		@book=Book.new
+		@booked=Book.new
 	end
 
 	def show
 		@book = Book.find(params[:id])
+		@booked=Book.new
 	end
 
 	def edit
