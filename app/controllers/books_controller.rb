@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!
-	
+	before_action :correct_user,only: [:edit, :update]
 	def new
 	end
 
@@ -42,6 +42,11 @@ class BooksController < ApplicationController
 	    @book.destroy
 	    redirect_to books_path
 	end
+
+	def correct_user
+        @user_id = Book.find(params[:id]).user_id
+        redirect_to books_path unless @user_id == current_user.id
+    end
 
 	private
     def book_params
