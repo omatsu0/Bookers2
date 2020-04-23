@@ -3,7 +3,7 @@
   <div class='col-xs-3'>
     <h2>User info</h2>
     <table class='table'>
-      <tr><%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></tr> 
+      <tr><%= attachment_image_tag current_user, :profile_image,:fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg",size: "100x100" %></tr> 
       <tr>
         <th>name</th>
         <th><%= current_user.name %></th>
@@ -33,7 +33,7 @@
     <% end %>
   <div class="field row">
     <div>Title</div>
-    <%= f.text_field :title,:placeholder => "Enter your email...",class: "col-xs-12"  %>
+    <%= f.text_field :title,class: "col-xs-12"  %>
   </div>
 
   <div class="field row">
@@ -52,8 +52,8 @@
     <table class='table'>
       <tr>
         <td><%= link_to user_path(@book.user.id) do %>
-          <%= attachment_image_tag @book.user, :profile_image, size: "100x100", fallback: "no_image.jpg" %><br><%= @book.user.name %>
-          <% end %></td><!-- linktoでattachment入れれるなら、2つの引数取る方法とかないの？-->
+          <%= attachment_image_tag @book.user, :profile_image,:fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %><br><%= @book.user.name %>
+          <% end %></td>
         <% if @book.user == current_user %>
         </td>
             <td><%= link_to @book.title, book_path(@book.id) %></td>

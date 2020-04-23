@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def update
     @user=User.find(params[:id])#更新は、そのidに上書き処理
     if @user.update(user_params)
-       redirect_to user_path(@user.id),notice: "You have updated user successfully."
+       redirect_to user_path(@user),notice: "You have updated user successfully."
     else
        render action: :edit
     end
@@ -26,6 +26,6 @@ class UsersController < ApplicationController
 
   private
 	def user_params
-		params.require(:user).permit(:name,:profile_image_id,:introduction,)
+		params.require(:user).permit(:name,:profile_image,:introduction,)
 	end
 end
